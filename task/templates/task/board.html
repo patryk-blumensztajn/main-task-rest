@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Board{% endblock %}
+{% block content %}
+{% csrf_token %}
+<h1>Materials</h1>
+
+<table>
+{% for company in data %}<tr><td>
+<a href="{% url 'material_detail' company.companyID company.ID  %}"><p>{{company.name}}</p></a></td></tr>
+{% endfor %}
+</table>
+{% endblock %}

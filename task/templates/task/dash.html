@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Board{% endblock %}
+{% block content %}
+{% csrf_token %}
+<h1>Materials - details</h1>
+
+<table>
+<tr>
+<td>ID: {{data.ID}}<br><td></tr>
+<tr>
+<td>Name: {{data.name}}<br></td></tr>
+<tr>
+<td>Description: {{data.description}}<br></td></tr>
+<tr><td>
+Notes: {{data.notes}}<br></td></tr>
+<tr><td>
+Supplier: {{data.supplier}}<br></td></tr>
+<tr><td>
+Price: {{data.price}}<br></td></tr>
+<tr>
+<td>
+Currency: {{data.currency}}<br></td></tr>
+</table>
+
+ <form action="{% url 'materialedit' data.ID %}">
+	<input type="submit" value="Edit material"></form>
+
+{%for one in materials%}
+{%if data.ID == one.id %}
+<h2>Changed data:</h2>
+{%endif%}
+{%endfor%}
+
+<table>
+{%for one in materials%}
+{%if data.ID == one.id %}<tr><td>
+ID: {{one.id}}<br></td></tr><tr><td>
+Name: {{one.name}}<br>
+</td></tr><tr><td>
+Description: {{one.description}}<br></td></tr><tr><td>
+Notes: {{one.notes}}<br></td></tr><tr><td>
+Supplier: {{one.supplier}}<br></td></tr><tr><td>
+Price: {{one.price}}<br></td></tr><tr><td>
+Currency: {{one.currency}}<br></td></tr>
+
+
+ <form action="{% url 'delete' one.id %}">
+	<input type="submit" value="Delete changed data"></form>
+{%endif%}
+{%endfor%}
+
+
+
+{%endblock%}
