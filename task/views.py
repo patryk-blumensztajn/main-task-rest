@@ -16,7 +16,7 @@ import json
 #This view returns main page, on which you can browse company list
 @login_required(login_url='/task/login/')
 def dashboard(request):
-	data = requests.get('http://193.142.112.220:8337/companyList')
+	data = requests.get('http://193.142.112.220:8337/companyList').json()
 	context = RequestContext(request, {
 	})
 	return render(request,
